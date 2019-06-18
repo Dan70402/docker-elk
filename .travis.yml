@@ -33,6 +33,7 @@ script:
   - docker-compose logs elasticsearch
   - docker-compose logs kibana
   - docker-compose logs logstash
+  - docker-compose logs apm
   - docker-compose down -v
 
   # Swarm
@@ -40,13 +41,16 @@ script:
   - docker stack deploy -c ./docker-stack.yml elk
   - docker service scale elk_kibana=0 --detach=false
   - docker service scale elk_logstash=0 --detach=false
+  - docker service scale elk_apm=0 --detach=false
   - sleep 30
   - .travis/elasticsearch-setup-passwords.exp swarm
   - docker service scale elk_kibana=1 --detach=false
   - docker service scale elk_logstash=1 --detach=false
+  - docker service scale elk_apm=1 --detach=false
   - .travis/run-tests.sh swarm
   - docker stack services elk
   - docker service logs elk_elasticsearch
   - docker service logs elk_kibana
   - docker service logs elk_logstash
+  - docker service logs elk_apm
   - docker stack rm elk

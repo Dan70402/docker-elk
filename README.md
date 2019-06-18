@@ -40,6 +40,7 @@ Other available stack variants:
    * [How to configure Elasticsearch](#how-to-configure-elasticsearch)
    * [How to configure Kibana](#how-to-configure-kibana)
    * [How to configure Logstash](#how-to-configure-logstash)
+   * [How to configure APM](#how-to-configure-APM)
    * [How to disable paid features](#how-to-disable-paid-features)
    * [How to scale out the Elasticsearch cluster](#how-to-scale-out-the-elasticsearch-cluster)
 4. [Storage](#storage)
@@ -203,8 +204,9 @@ It is also possible to map the entire `config` directory instead of a single fil
 
 The Logstash configuration is stored in [`logstash/config/logstash.yml`][config-ls].
 
-It is also possible to map the entire `config` directory instead of a single file, however you must be aware that
-Logstash will be expecting a [`log4j2.properties`][log4j-props] file for its own logging.
+### How to configure APM
+
+The APM default configuration is stored in [`apm/config/apm-server.yml`][config-apm].
 
 ### How to disable paid features
 
