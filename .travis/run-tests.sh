@@ -66,6 +66,9 @@ poll_ready kibana 'http://localhost:5601/api/status' 'kibana:changeme'
 log 'Waiting for Logstash readiness'
 poll_ready logstash 'http://localhost:9600/_node/pipelines/main?pretty'
 
+log 'Waiting for APM readiness'
+poll_ready apm 'http://localhost:8200'
+
 log 'Creating Logstash index pattern in Kibana'
 source .env
 curl -X POST -D- 'http://localhost:5601/api/saved_objects/index-pattern' \
